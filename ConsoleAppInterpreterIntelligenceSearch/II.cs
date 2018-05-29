@@ -10,608 +10,612 @@ namespace ConsoleAppInterpreterIntelligence
     using System.Collections.Generic;
 
     using System.Globalization;
+    using Microsoft.Azure.Search;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
     public partial class Welcome
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+        [System.ComponentModel.DataAnnotations.Key]
+        //[JsonProperty("id")]
+        //[IsFilterable]
+        public string Id { get; set; }
 
-        [JsonProperty("versionValue")]
+        //[JsonProperty("versionValue")]
+        [IsFilterable, IsSortable, IsFacetable]
         public long VersionValue { get; set; }
 
-        [JsonProperty("uuid")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Uuid { get; set; }
 
-        [JsonProperty("createdBy")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string CreatedBy { get; set; }
 
-        [JsonProperty("createdDate")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string CreatedDate { get; set; }
 
-        [JsonProperty("lastModifiedBy")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string LastModifiedBy { get; set; }
 
-        [JsonProperty("lastModifiedDate")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string LastModifiedDate { get; set; }
 
-        [JsonProperty("company.id")]
+        [IsFilterable, IsFacetable]
         public long CompanyId { get; set; }
 
-        [JsonProperty("name")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Name { get; set; }
 
-        [JsonProperty("displayName")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string DisplayName { get; set; }
 
-        [JsonProperty("salutation")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Salutation { get; set; }
 
-        [JsonProperty("firstName")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string FirstName { get; set; }
 
-        [JsonProperty("middleName")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string MiddleName { get; set; }
 
-        [JsonProperty("lastName")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string LastName { get; set; }
 
-        [JsonProperty("nickName")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string NickName { get; set; }
 
-        [JsonProperty("suffix")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Suffix { get; set; }
 
-        [JsonProperty("gender.id")]
+        [IsFilterable, IsFacetable]
         public long GenderId { get; set; }
 
-        [JsonProperty("businessUnit.id")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string BusinessUnitId { get; set; }
 
-        [JsonProperty("dateOfBirth")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string DateOfBirth { get; set; }
 
-        [JsonProperty("contactTypes")]
-        public Status[] ContactTypes { get; set; }
+        //[JsonProperty("contactTypes")]
+        //public Status[] ContactTypes { get; set; }
 
-        [JsonProperty("accountingReference")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string AccountingReference { get; set; }
 
-        [JsonProperty("referenceId")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string ReferenceId { get; set; }
 
-        [JsonProperty("languageMappings")]
-        public LanguageMapping[] LanguageMappings { get; set; }
+        //[JsonProperty("languageMappings")]
+        //public LanguageMapping[] LanguageMappings { get; set; }
 
-        [JsonProperty("primaryNumber")]
-        public Number PrimaryNumber { get; set; }
+        //[JsonProperty("primaryNumber")]
+        //public Number PrimaryNumber { get; set; }
 
-        [JsonProperty("numbers")]
-        public Number[] Numbers { get; set; }
+        //[JsonProperty("numbers")]
+        //public Number[] Numbers { get; set; }
 
-        [JsonProperty("primaryAddress")]
-        public Address PrimaryAddress { get; set; }
+        //[JsonProperty("primaryAddress")]
+        //public Address PrimaryAddress { get; set; }
 
-        [JsonProperty("lat")]
+        [IsFilterable, IsFacetable]
         public double Lat { get; set; }
 
-        [JsonProperty("lng")]
+        [IsFilterable, IsFacetable]
         public double Lng { get; set; }
 
-        [JsonProperty("addresses")]
-        public Address[] Addresses { get; set; }
+        //[JsonProperty("addresses")]
+        //public Address[] Addresses { get; set; }
 
-        [JsonProperty("primaryEmail")]
-        public Email PrimaryEmail { get; set; }
+        //[JsonProperty("primaryEmail")]
+        //public Email PrimaryEmail { get; set; }
 
-        [JsonProperty("emails")]
-        public Email[] Emails { get; set; }
+        //[JsonProperty("emails")]
+        //public Email[] Emails { get; set; }
 
-        [JsonProperty("qualifications")]
-        public Eligibility[] Qualifications { get; set; }
+        //[JsonProperty("qualifications")]
+        //public Eligibility[] Qualifications { get; set; }
 
-        [JsonProperty("eligibilities")]
-        public Eligibility[] Eligibilities { get; set; }
+        //[JsonProperty("eligibilities")]
+        //public Eligibility[] Eligibilities { get; set; }
 
-        [JsonProperty("criteriaHierarchy")]
-        public object[] CriteriaHierarchy { get; set; }
+        //[JsonProperty("criteriaHierarchy")]
+        //public object[] CriteriaHierarchy { get; set; }
 
-        [JsonProperty("hasTransportation")]
+        [IsFilterable, IsFacetable]
         public bool HasTransportation { get; set; }
 
-        [JsonProperty("hasChildren")]
+        [IsFilterable, IsFacetable]
         public bool HasChildren { get; set; }
 
-        [JsonProperty("notes")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Notes { get; set; }
 
-        [JsonProperty("companyName")]
-        public object CompanyName { get; set; }
+        //[JsonProperty("companyName")]
+        //public object CompanyName { get; set; }
 
-        [JsonProperty("website")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Website { get; set; }
 
-        [JsonProperty("region")]
-        public object Region { get; set; }
+        //[JsonProperty("region")]
+        //public object Region { get; set; }
 
-        [JsonProperty("countryOfOrigin")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string CountryOfOrigin { get; set; }
 
-        [JsonProperty("countryOfResidence")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string CountryOfResidence { get; set; }
 
-        [JsonProperty("countryOfNationality")]
-        public object CountryOfNationality { get; set; }
+        //[JsonProperty("countryOfNationality")]
+        //public object CountryOfNationality { get; set; }
 
-        [JsonProperty("active")]
+        [IsFilterable, IsFacetable]
         public bool Active { get; set; }
 
-        [JsonProperty("activeNote")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string ActiveNote { get; set; }
 
-        [JsonProperty("availability")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Availability { get; set; }
 
-        [JsonProperty("experience")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Experience { get; set; }
 
-        [JsonProperty("registeredTaxId")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string RegisteredTaxId { get; set; }
 
-        [JsonProperty("bankAccount")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string BankAccount { get; set; }
 
-        [JsonProperty("sortCode")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string SortCode { get; set; }
 
-        [JsonProperty("iban")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Iban { get; set; }
 
-        [JsonProperty("swift")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Swift { get; set; }
 
-        [JsonProperty("eft.id")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string EftId { get; set; }
 
-        [JsonProperty("eft.name")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string EftName { get; set; }
 
-        [JsonProperty("paymentMethod.id")]
+        [IsFilterable, IsFacetable]
         public long PaymentMethodId { get; set; }
 
-        [JsonProperty("paymentMethod.name")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string PaymentMethodName { get; set; }
 
-        [JsonProperty("paymentAccount")]
-        public object PaymentAccount { get; set; }
+        //[JsonProperty("paymentAccount")]
+        //public object PaymentAccount { get; set; }
 
-        [JsonProperty("registeredTax")]
+        [IsFilterable, IsFacetable]
         public bool RegisteredTax { get; set; }
 
-        [JsonProperty("registeredTaxIdDescription")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string RegisteredTaxIdDescription { get; set; }
 
-        [JsonProperty("employmentCategory.id")]
+        [IsFilterable, IsFacetable]
         public long EmploymentCategoryId { get; set; }
 
-        [JsonProperty("assignmentTier.id")]
+        [IsFilterable, IsFacetable]
         public long AssignmentTierId { get; set; }
 
-        [JsonProperty("timeZone")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string TimeZone { get; set; }
 
-        [JsonProperty("ethnicity")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string Ethnicity { get; set; }
 
-        [JsonProperty("document")]
-        public object Document { get; set; }
+        //[JsonProperty("document")]
+        //public object Document { get; set; }
 
-        [JsonProperty("imagePath")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string ImagePath { get; set; }
 
-        [JsonProperty("outOfOffice")]
+        [IsFilterable, IsFacetable]
         public bool OutOfOffice { get; set; }
 
-        [JsonProperty("disableUpcomingReminder")]
+        [IsFilterable, IsFacetable]
         public bool DisableUpcomingReminder { get; set; }
 
-        [JsonProperty("disableCloseReminder")]
+        [IsFilterable, IsFacetable]
         public bool DisableCloseReminder { get; set; }
 
-        [JsonProperty("disableConfirmReminder")]
+        [IsFilterable, IsFacetable]
         public bool DisableConfirmReminder { get; set; }
 
-        [JsonProperty("bankAccountDescription")]
-        public object BankAccountDescription { get; set; }
+        //[JsonProperty("bankAccountDescription")]
+        //public object BankAccountDescription { get; set; }
 
-        [JsonProperty("timeWorked")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string TimeWorked { get; set; }
 
-        [JsonProperty("activationDate")]
-        public object ActivationDate { get; set; }
+        //[JsonProperty("activationDate")]
+        //public object ActivationDate { get; set; }
 
-        [JsonProperty("originalStartDate")]
-        public object OriginalStartDate { get; set; }
+        //[JsonProperty("originalStartDate")]
+        //public object OriginalStartDate { get; set; }
 
-        [JsonProperty("datePhotoSentToPrinter")]
-        public object DatePhotoSentToPrinter { get; set; }
+        //[JsonProperty("datePhotoSentToPrinter")]
+        //public object DatePhotoSentToPrinter { get; set; }
 
-        [JsonProperty("datePhotoSentToInterpreter")]
-        public object DatePhotoSentToInterpreter { get; set; }
+        //[JsonProperty("datePhotoSentToInterpreter")]
+        //public object DatePhotoSentToInterpreter { get; set; }
 
-        [JsonProperty("inductionDate")]
-        public object InductionDate { get; set; }
+        //[JsonProperty("inductionDate")]
+        //public object InductionDate { get; set; }
 
-        [JsonProperty("reActivationDate")]
-        public object ReActivationDate { get; set; }
+        //[JsonProperty("reActivationDate")]
+        //public object ReActivationDate { get; set; }
 
-        [JsonProperty("iolNrcpdNumber")]
-        public object IolNrcpdNumber { get; set; }
+        //[JsonProperty("iolNrcpdNumber")]
+        //public object IolNrcpdNumber { get; set; }
 
-        [JsonProperty("referralSource")]
-        public object ReferralSource { get; set; }
+        //[JsonProperty("referralSource")]
+        //public object ReferralSource { get; set; }
 
-        [JsonProperty("refereeSourceName")]
-        public object RefereeSourceName { get; set; }
+        //[JsonProperty("refereeSourceName")]
+        //public object RefereeSourceName { get; set; }
 
-        [JsonProperty("recruiterName")]
-        public object RecruiterName { get; set; }
+        //[JsonProperty("recruiterName")]
+        //public object RecruiterName { get; set; }
 
-        [JsonProperty("taleoId")]
-        public object TaleoId { get; set; }
+        //[JsonProperty("taleoId")]
+        //public object TaleoId { get; set; }
 
-        [JsonProperty("bankAccountReference")]
-        public object BankAccountReference { get; set; }
+        //[JsonProperty("bankAccountReference")]
+        //public object BankAccountReference { get; set; }
 
-        [JsonProperty("status")]
-        public Status Status { get; set; }
+        //[JsonProperty("status")]
+        //public Status Status { get; set; }
 
-        [JsonProperty("disableConfirmationEmails")]
+        [IsFilterable, IsFacetable]
         public bool DisableConfirmationEmails { get; set; }
 
-        [JsonProperty("disableOfferEmails")]
+        [IsFilterable, IsFacetable]
         public bool DisableOfferEmails { get; set; }
 
-        [JsonProperty("disableAutoOffers")]
+        [IsFilterable, IsFacetable]
         public bool DisableAutoOffers { get; set; }
 
-        [JsonProperty("currencyCode.id")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string CurrencyCodeId { get; set; }
 
-        [JsonProperty("currencySymbol")]
-        public object CurrencySymbol { get; set; }
+        //[JsonProperty("currencySymbol")]
+        //public object CurrencySymbol { get; set; }
 
-        [JsonProperty("bankBranch")]
+        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
         public string BankBranch { get; set; }
     }
 
-    public partial class Address
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //public partial class Address
+    //{
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("client.id")]
-        public string ClientId { get; set; }
+    //    [JsonProperty("client.id")]
+    //    public string ClientId { get; set; }
 
-        [JsonProperty("clientLabel")]
-        public object ClientLabel { get; set; }
+    //    [JsonProperty("clientLabel")]
+    //    public object ClientLabel { get; set; }
 
-        [JsonProperty("company.id")]
-        public long CompanyId { get; set; }
+    //    [JsonProperty("company.id")]
+    //    public long CompanyId { get; set; }
 
-        [JsonProperty("customer.id")]
-        public string CustomerId { get; set; }
+    //    [JsonProperty("customer.id")]
+    //    public string CustomerId { get; set; }
 
-        [JsonProperty("customerBilling.id")]
-        public string CustomerBillingId { get; set; }
+    //    [JsonProperty("customerBilling.id")]
+    //    public string CustomerBillingId { get; set; }
 
-        [JsonProperty("displayLabel")]
-        public string DisplayLabel { get; set; }
+    //    [JsonProperty("displayLabel")]
+    //    public string DisplayLabel { get; set; }
 
-        [JsonProperty("description")]
-        public object Description { get; set; }
+    //    [JsonProperty("description")]
+    //    public object Description { get; set; }
 
-        [JsonProperty("notes")]
-        public object Notes { get; set; }
+    //    [JsonProperty("notes")]
+    //    public object Notes { get; set; }
 
-        [JsonProperty("addrEntered")]
-        public string AddrEntered { get; set; }
+    //    [JsonProperty("addrEntered")]
+    //    public string AddrEntered { get; set; }
 
-        [JsonProperty("addrFormatted")]
-        public string AddrFormatted { get; set; }
+    //    [JsonProperty("addrFormatted")]
+    //    public string AddrFormatted { get; set; }
 
-        [JsonProperty("aptUnit")]
-        public object AptUnit { get; set; }
+    //    [JsonProperty("aptUnit")]
+    //    public object AptUnit { get; set; }
 
-        [JsonProperty("preamble")]
-        public object Preamble { get; set; }
+    //    [JsonProperty("preamble")]
+    //    public object Preamble { get; set; }
 
-        [JsonProperty("street1")]
-        public object Street1 { get; set; }
+    //    [JsonProperty("street1")]
+    //    public object Street1 { get; set; }
 
-        [JsonProperty("street2")]
-        public object Street2 { get; set; }
+    //    [JsonProperty("street2")]
+    //    public object Street2 { get; set; }
 
-        [JsonProperty("street3")]
-        public object Street3 { get; set; }
+    //    [JsonProperty("street3")]
+    //    public object Street3 { get; set; }
 
-        [JsonProperty("cityTown")]
-        public object CityTown { get; set; }
+    //    [JsonProperty("cityTown")]
+    //    public object CityTown { get; set; }
 
-        [JsonProperty("stateCounty")]
-        public object StateCounty { get; set; }
+    //    [JsonProperty("stateCounty")]
+    //    public object StateCounty { get; set; }
 
-        [JsonProperty("postalCode")]
-        public object PostalCode { get; set; }
+    //    [JsonProperty("postalCode")]
+    //    public object PostalCode { get; set; }
 
-        [JsonProperty("country")]
-        public object Country { get; set; }
+    //    [JsonProperty("country")]
+    //    public object Country { get; set; }
 
-        [JsonProperty("primaryAddress")]
-        public bool PrimaryAddress { get; set; }
+    //    [JsonProperty("primaryAddress")]
+    //    public bool PrimaryAddress { get; set; }
 
-        [JsonProperty("valid")]
-        public bool Valid { get; set; }
+    //    [JsonProperty("valid")]
+    //    public bool Valid { get; set; }
 
-        [JsonProperty("validationStatus")]
-        public string ValidationStatus { get; set; }
+    //    [JsonProperty("validationStatus")]
+    //    public string ValidationStatus { get; set; }
 
-        [JsonProperty("validated")]
-        public bool Validated { get; set; }
+    //    [JsonProperty("validated")]
+    //    public bool Validated { get; set; }
 
-        [JsonProperty("type.id")]
-        public long TypeId { get; set; }
+    //    [JsonProperty("type.id")]
+    //    public long TypeId { get; set; }
 
-        [JsonProperty("lat")]
-        public double Lat { get; set; }
+    //    [JsonProperty("lat")]
+    //    public double Lat { get; set; }
 
-        [JsonProperty("lng")]
-        public double Lng { get; set; }
+    //    [JsonProperty("lng")]
+    //    public double Lng { get; set; }
 
-        [JsonProperty("addressPhone")]
-        public object AddressPhone { get; set; }
+    //    [JsonProperty("addressPhone")]
+    //    public object AddressPhone { get; set; }
 
-        [JsonProperty("addressFax")]
-        public object AddressFax { get; set; }
+    //    [JsonProperty("addressFax")]
+    //    public object AddressFax { get; set; }
 
-        [JsonProperty("addressEmail")]
-        public object AddressEmail { get; set; }
+    //    [JsonProperty("addressEmail")]
+    //    public object AddressEmail { get; set; }
 
-        [JsonProperty("contactPerson")]
-        public object ContactPerson { get; set; }
+    //    [JsonProperty("contactPerson")]
+    //    public object ContactPerson { get; set; }
 
-        [JsonProperty("costCenter")]
-        public object CostCenter { get; set; }
+    //    [JsonProperty("costCenter")]
+    //    public object CostCenter { get; set; }
 
-        [JsonProperty("active")]
-        public bool Active { get; set; }
+    //    [JsonProperty("active")]
+    //    public bool Active { get; set; }
 
-        [JsonProperty("parent.id")]
-        public string ParentId { get; set; }
+    //    [JsonProperty("parent.id")]
+    //    public string ParentId { get; set; }
 
-        [JsonProperty("parent.label")]
-        public string ParentLabel { get; set; }
+    //    [JsonProperty("parent.label")]
+    //    public string ParentLabel { get; set; }
 
-        [JsonProperty("publicNotes")]
-        public object PublicNotes { get; set; }
+    //    [JsonProperty("publicNotes")]
+    //    public object PublicNotes { get; set; }
 
-        [JsonProperty("region.id")]
-        public string RegionId { get; set; }
+    //    [JsonProperty("region.id")]
+    //    public string RegionId { get; set; }
 
-        [JsonProperty("billingRegion.id")]
-        public string BillingRegionId { get; set; }
+    //    [JsonProperty("billingRegion.id")]
+    //    public string BillingRegionId { get; set; }
 
-        [JsonProperty("costCenterName")]
-        public object CostCenterName { get; set; }
+    //    [JsonProperty("costCenterName")]
+    //    public object CostCenterName { get; set; }
 
-        [JsonProperty("timeZone")]
-        public object TimeZone { get; set; }
-    }
+    //    [JsonProperty("timeZone")]
+    //    public object TimeZone { get; set; }
+    //}
 
-    public partial class Status
-    {
-        [JsonProperty("class")]
-        public Class Class { get; set; }
+    //public partial class Status
+    //{
+    //    [JsonProperty("class")]
+    //    public Class Class { get; set; }
 
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("defaultOption")]
-        public bool DefaultOption { get; set; }
+    //    [JsonProperty("defaultOption")]
+    //    public bool DefaultOption { get; set; }
 
-        [JsonProperty("description")]
-        public Description? Description { get; set; }
+    //    [JsonProperty("description")]
+    //    public Description? Description { get; set; }
 
-        [JsonProperty("l10nKey")]
-        public object L10NKey { get; set; }
+    //    [JsonProperty("l10nKey")]
+    //    public object L10NKey { get; set; }
 
-        [JsonProperty("name")]
-        public Name Name { get; set; }
+    //    [JsonProperty("name")]
+    //    public Name Name { get; set; }
 
-        [JsonProperty("nameKey")]
-        public NameKey NameKey { get; set; }
-    }
+    //    [JsonProperty("nameKey")]
+    //    public NameKey NameKey { get; set; }
+    //}
 
-    public partial class Eligibility
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //public partial class Eligibility
+    //{
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("createdDate")]
-        public string CreatedDate { get; set; }
+    //    [JsonProperty("createdDate")]
+    //    public string CreatedDate { get; set; }
 
-        [JsonProperty("createdBy")]
-        public string CreatedBy { get; set; }
+    //    [JsonProperty("createdBy")]
+    //    public string CreatedBy { get; set; }
 
-        [JsonProperty("lastModifiedDate")]
-        public string LastModifiedDate { get; set; }
+    //    [JsonProperty("lastModifiedDate")]
+    //    public string LastModifiedDate { get; set; }
 
-        [JsonProperty("lastModifiedBy")]
-        public string LastModifiedBy { get; set; }
+    //    [JsonProperty("lastModifiedBy")]
+    //    public string LastModifiedBy { get; set; }
 
-        [JsonProperty("company.id")]
-        public long CompanyId { get; set; }
+    //    [JsonProperty("company.id")]
+    //    public long CompanyId { get; set; }
 
-        [JsonProperty("criteria.id")]
-        public long CriteriaId { get; set; }
+    //    [JsonProperty("criteria.id")]
+    //    public long CriteriaId { get; set; }
 
-        [JsonProperty("customerSpecific")]
-        public bool? CustomerSpecific { get; set; }
+    //    [JsonProperty("customerSpecific")]
+    //    public bool? CustomerSpecific { get; set; }
 
-        [JsonProperty("enforcementPolicy")]
-        public EnforcementPolicy EnforcementPolicy { get; set; }
+    //    [JsonProperty("enforcementPolicy")]
+    //    public EnforcementPolicy EnforcementPolicy { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+    //    [JsonProperty("name")]
+    //    public string Name { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+    //    [JsonProperty("description")]
+    //    public string Description { get; set; }
 
-        [JsonProperty("validated")]
-        public bool Validated { get; set; }
+    //    [JsonProperty("validated")]
+    //    public bool Validated { get; set; }
 
-        [JsonProperty("validatedStatus")]
-        public ValidatedStatus ValidatedStatus { get; set; }
+    //    [JsonProperty("validatedStatus")]
+    //    public ValidatedStatus ValidatedStatus { get; set; }
 
-        [JsonProperty("validatedDate")]
-        public string ValidatedDate { get; set; }
+    //    [JsonProperty("validatedDate")]
+    //    public string ValidatedDate { get; set; }
 
-        [JsonProperty("validatedBy")]
-        public string ValidatedBy { get; set; }
+    //    [JsonProperty("validatedBy")]
+    //    public string ValidatedBy { get; set; }
 
-        [JsonProperty("validUntil")]
-        public ValidUntil ValidUntil { get; set; }
+    //    [JsonProperty("validUntil")]
+    //    public ValidUntil ValidUntil { get; set; }
 
-        [JsonProperty("state")]
-        public Status State { get; set; }
+    //    [JsonProperty("state")]
+    //    public Status State { get; set; }
 
-        [JsonProperty("stateDateSince")]
-        public string StateDateSince { get; set; }
+    //    [JsonProperty("stateDateSince")]
+    //    public string StateDateSince { get; set; }
 
-        [JsonProperty("stateDateUntil")]
-        public StateDateUntil StateDateUntil { get; set; }
+    //    [JsonProperty("stateDateUntil")]
+    //    public StateDateUntil StateDateUntil { get; set; }
 
-        [JsonProperty("notes")]
-        public string Notes { get; set; }
+    //    [JsonProperty("notes")]
+    //    public string Notes { get; set; }
 
-        [JsonProperty("documents")]
-        public object[] Documents { get; set; }
+    //    [JsonProperty("documents")]
+    //    public object[] Documents { get; set; }
 
-        [JsonProperty("criteriaType")]
-        public CriteriaType CriteriaType { get; set; }
+    //    [JsonProperty("criteriaType")]
+    //    public CriteriaType CriteriaType { get; set; }
 
-        [JsonProperty("language.id")]
-        public LanguageId LanguageId { get; set; }
+    //    [JsonProperty("language.id")]
+    //    public LanguageId LanguageId { get; set; }
 
-        [JsonProperty("languageLabel")]
-        public LanguageId LanguageLabel { get; set; }
+    //    [JsonProperty("languageLabel")]
+    //    public LanguageId LanguageLabel { get; set; }
 
-        [JsonProperty("languageCode")]
-        public LanguageId LanguageCode { get; set; }
+    //    [JsonProperty("languageCode")]
+    //    public LanguageId LanguageCode { get; set; }
 
-        [JsonProperty("supportingInformation")]
-        public LanguageId SupportingInformation { get; set; }
-    }
+    //    [JsonProperty("supportingInformation")]
+    //    public LanguageId SupportingInformation { get; set; }
+    //}
 
-    public partial class Email
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //public partial class Email
+    //{
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("emailAddress")]
-        public string EmailAddress { get; set; }
+    //    [JsonProperty("emailAddress")]
+    //    public string EmailAddress { get; set; }
 
-        [JsonProperty("addressVerified")]
-        public object AddressVerified { get; set; }
+    //    [JsonProperty("addressVerified")]
+    //    public object AddressVerified { get; set; }
 
-        [JsonProperty("dateVerified")]
-        public object DateVerified { get; set; }
+    //    [JsonProperty("dateVerified")]
+    //    public object DateVerified { get; set; }
 
-        [JsonProperty("primaryEmail")]
-        public bool PrimaryEmail { get; set; }
+    //    [JsonProperty("primaryEmail")]
+    //    public bool PrimaryEmail { get; set; }
 
-        [JsonProperty("type.id")]
-        public long TypeId { get; set; }
-    }
+    //    [JsonProperty("type.id")]
+    //    public long TypeId { get; set; }
+    //}
 
-    public partial class LanguageMapping
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //public partial class LanguageMapping
+    //{
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("contact.id")]
-        public long ContactId { get; set; }
+    //    [JsonProperty("contact.id")]
+    //    public long ContactId { get; set; }
 
-        [JsonProperty("language.id")]
-        public long LanguageId { get; set; }
+    //    [JsonProperty("language.id")]
+    //    public long LanguageId { get; set; }
 
-        [JsonProperty("language")]
-        public Language Language { get; set; }
+    //    [JsonProperty("language")]
+    //    public Language Language { get; set; }
 
-        [JsonProperty("rating")]
-        public string Rating { get; set; }
-    }
+    //    [JsonProperty("rating")]
+    //    public string Rating { get; set; }
+    //}
 
-    public partial class Language
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //public partial class Language
+    //{
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("label")]
-        public string Label { get; set; }
+    //    [JsonProperty("label")]
+    //    public string Label { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+    //    [JsonProperty("description")]
+    //    public string Description { get; set; }
 
-        [JsonProperty("alternates")]
-        public string Alternates { get; set; }
+    //    [JsonProperty("alternates")]
+    //    public string Alternates { get; set; }
 
-        [JsonProperty("value")]
-        public string Value { get; set; }
+    //    [JsonProperty("value")]
+    //    public string Value { get; set; }
 
-        [JsonProperty("subtag")]
-        public string Subtag { get; set; }
+    //    [JsonProperty("subtag")]
+    //    public string Subtag { get; set; }
 
-        [JsonProperty("iso639_3Tag")]
-        public string Iso6393Tag { get; set; }
+    //    [JsonProperty("iso639_3Tag")]
+    //    public string Iso6393Tag { get; set; }
 
-        [JsonProperty("type")]
-        public string Type { get; set; }
+    //    [JsonProperty("type")]
+    //    public string Type { get; set; }
 
-        [JsonProperty("alias")]
-        public object Alias { get; set; }
+    //    [JsonProperty("alias")]
+    //    public object Alias { get; set; }
 
-        [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
-    }
+    //    [JsonProperty("enabled")]
+    //    public bool Enabled { get; set; }
+    //}
 
-    public partial class Number
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
+    //public partial class Number
+    //{
+    //    [JsonProperty("id")]
+    //    public long Id { get; set; }
 
-        [JsonProperty("parsedNumber")]
-        public string ParsedNumber { get; set; }
+    //    [JsonProperty("parsedNumber")]
+    //    public string ParsedNumber { get; set; }
 
-        [JsonProperty("numberFormatted")]
-        public object NumberFormatted { get; set; }
+    //    [JsonProperty("numberFormatted")]
+    //    public object NumberFormatted { get; set; }
 
-        [JsonProperty("countryCode")]
-        public object CountryCode { get; set; }
+    //    [JsonProperty("countryCode")]
+    //    public object CountryCode { get; set; }
 
-        [JsonProperty("areaCode")]
-        public object AreaCode { get; set; }
+    //    [JsonProperty("areaCode")]
+    //    public object AreaCode { get; set; }
 
-        [JsonProperty("number")]
-        public object NumberNumber { get; set; }
+    //    [JsonProperty("number")]
+    //    public object NumberNumber { get; set; }
 
-        [JsonProperty("type.id")]
-        public long TypeId { get; set; }
+    //    [JsonProperty("type.id")]
+    //    public long TypeId { get; set; }
 
-        [JsonProperty("primaryNumber")]
-        public bool PrimaryNumber { get; set; }
-    }
+    //    [JsonProperty("primaryNumber")]
+    //    public bool PrimaryNumber { get; set; }
+    //}
 
     public enum Class { ComNgsIdModelTypeActiveContactStatus, ComNgsIdModelTypeContactType, ComNgsIdModelTypeEmploymentEligibilityStatus };
 

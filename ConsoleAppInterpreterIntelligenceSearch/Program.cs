@@ -16,6 +16,10 @@ namespace ConsoleAppInterpreterIntelligence
         // This sample shows how to delete, create, upload documents and query an index
         static void Main(string[] args)
         {
+
+            //var shows = LoginAndDeserializeJson();
+            //Console.WriteLine(shows);
+
             IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
             IConfigurationRoot configuration = builder.Build();
 
@@ -27,7 +31,7 @@ namespace ConsoleAppInterpreterIntelligence
             Console.WriteLine("{0}", "Creating index...\n");
             CreateHotelsIndex(serviceClient);
 
-            ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
+            ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotel");
 
             Console.WriteLine("{0}", "Uploading documents...\n");
             UploadDocuments(indexClient);
@@ -51,18 +55,18 @@ namespace ConsoleAppInterpreterIntelligence
 
         private static SearchIndexClient CreateSearchIndexClient(IConfigurationRoot configuration)
         {
-            string searchServiceName = configuration["SearchServiceName"];
+            string searchServiceName = configuration["ronansearch"];
             string queryApiKey = configuration["SearchServiceQueryApiKey"];
 
-            SearchIndexClient indexClient = new SearchIndexClient(searchServiceName, "hotels", new SearchCredentials(queryApiKey));
+            SearchIndexClient indexClient = new SearchIndexClient(searchServiceName, "hotel", new SearchCredentials(queryApiKey));
             return indexClient;
         }
 
         private static void DeleteHotelsIndexIfExists(SearchServiceClient serviceClient)
         {
-            if (serviceClient.Indexes.Exists("hotels"))
+            if (serviceClient.Indexes.Exists("hotel"))
             {
-                serviceClient.Indexes.Delete("hotels");
+                serviceClient.Indexes.Delete("hotel");
             }
         }
 
@@ -70,7 +74,7 @@ namespace ConsoleAppInterpreterIntelligence
         {
             var definition = new Index()
             {
-                Name = "welcome",
+                Name = "hotel",
                 Fields = FieldBuilder.BuildForType<Welcome>()
             };
 
@@ -80,7 +84,7 @@ namespace ConsoleAppInterpreterIntelligence
 
         private static void UploadDocuments(ISearchIndexClient indexClient)
         {
-            var hotels = new Welcome[]
+            var hotel = new Welcome[]
             {
                 new Welcome()
                 {
@@ -89,7 +93,7 @@ namespace ConsoleAppInterpreterIntelligence
                 } };
 
 
-            var batch = IndexBatch.Upload(hotels);
+            var batch = IndexBatch.Upload(hotel);
 
             try
             {
